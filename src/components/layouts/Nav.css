@@ -1,0 +1,35 @@
+.header {
+    background: #000;
+    color: white;
+}
+.header,
+.header > nav > ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3em;
+}
+.search-input {
+    padding: 0.7em;
+    border: 1px solid grey;
+}
+
+.header > nav > ul {
+    list-style: none;
+}
+.header > nav > ul > li {
+    margin: 0 2em;
+}
+.signup-link {
+    background: gold;
+    padding: 0.5em;
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.login-link {
+    background: blue;
+    padding: 0.5em;
+    color: white;
+    text-decoration: none;
+}
