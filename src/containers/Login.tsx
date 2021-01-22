@@ -4,7 +4,7 @@ import Input from './../components/layouts/Inputs';
 import '../styles/Login.css';
 import Button from './../components/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../actions/users';
+import { googleAuth, loginUser } from '../actions/users';
 import { RootState } from '../store';
 
 function validateEmail(email: string) {
@@ -75,7 +75,6 @@ const Login = (): React.ReactElement<HTMLDivElement> => {
     const [errors, setErrors] = useState({
         passwordError: '',
         emailError: '',
-        disabled: false,
     });
     const { email, password } = inputs;
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,36 +96,32 @@ const Login = (): React.ReactElement<HTMLDivElement> => {
     const handleBlur = () => {
         if (email.length === 0) {
             setErrors({
-                emailError: 'length cannot be empty',
+                emailError: 'Email cannot be empty',
                 passwordError: '',
-                disabled: true,
             });
         } else if (!validateEmail(email)) {
             setErrors({
                 emailError: 'email not valid',
                 passwordError: '',
-                disabled: true,
             });
         } else if (password.length === 0) {
             setErrors({
                 emailError: '',
                 passwordError: 'password cannot be  empty',
-                disabled: true,
             });
         } else if (password.length <= 5) {
             setErrors({
                 emailError: '',
                 passwordError: 'password must be at least 5 characters',
-                disabled: true,
             });
         } else {
             setErrors({
                 emailError: '',
                 passwordError: '',
-                disabled: false,
             });
         }
     };
+    const handleGoogleAuth = () => dispacth(googleAuth());
     if (isAunthenticated) {
         return <Redirect to={'/'} />;
     }
@@ -137,13 +132,16 @@ const Login = (): React.ReactElement<HTMLDivElement> => {
                     <h5>Welcome to Uncleabbey Blog</h5>
                 </div>
                 <div className="socials">
-                    <div className="google">
+                    <div className="google" onClick={handleGoogleAuth}>
                         <img
                             src="https://res.cloudinary.com/kayode/image/upload/v1610797945/google_te8q5j.svg"
                             alt="icon"
                         />
                         Continue with Google
                     </div>
+                    <form action="http://localhost:5000/api/v1/users/google" method="get">
+                        <button>Continue with Google</button>
+                    </form>
                 </div>
                 <div className="form-container">
                     <span>Have a Password?</span>
@@ -155,7 +153,7 @@ const Login = (): React.ReactElement<HTMLDivElement> => {
                         handleChange={handleChange}
                         handleSubmit={handleSubmit}
                         handleBlur={handleBlur}
-                        disabled={errors.disabled}
+                        disabled={email.length < 3 || password.length < 5 || !validateEmail(email) ? true : false}
                     />
                     <p>
                         Not Yet Registered <Link to="/register">Sign up Here</Link>
