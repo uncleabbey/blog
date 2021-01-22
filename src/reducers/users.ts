@@ -1,14 +1,20 @@
 import * as types from '../actions/types';
 
-const initialState = {
-    user: {},
+interface reducerStateI {
+    token: string | null;
+    loading: boolean;
+    error: boolean;
+    isAunthenticated: boolean;
+    user?: types.UserType;
+}
+const initialState: reducerStateI = {
     token: localStorage.getItem('token') || '',
-    loading: true,
+    loading: false,
     error: false,
     isAunthenticated: false,
 };
 
-const userReducer = (state = initialState, action: types.UserAction): types.IuserState => {
+const userReducer = (state = initialState, action: types.UserAction): reducerStateI => {
     switch (action.type) {
         case types.LOADING:
             return {
@@ -23,6 +29,7 @@ const userReducer = (state = initialState, action: types.UserAction): types.Iuse
                 isAunthenticated: true,
             };
         case types.LOGIN_SUCCESSS:
+        case types.GOOGLE_SUCCESS:
         case types.USER_REG_SUCCESS:
             localStorage.setItem('token', action.token);
             return {
@@ -32,6 +39,25 @@ const userReducer = (state = initialState, action: types.UserAction): types.Iuse
                 user: action.user,
                 isAunthenticated: true,
                 error: false,
+            };
+        case types.USER_ERROR:
+        case types.LOGIN_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: true,
+                isAunthenticated: false,
+                user: undefined,
+                token: null,
+            };
+        case types.LOGOUT:
+            localStorage.removeItem('token');
+            return {
+                ...state,
+                loading: false,
+                user: undefined,
+                isAunthenticated: false,
+                token: null,
             };
         default:
             return state;

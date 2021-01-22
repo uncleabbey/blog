@@ -33,3 +33,20 @@
     color: white;
     text-decoration: none;
 }
+.logout {
+  border: 0;
+  outline: 0;
+  background: red;
+  color: white;
+  padding: 0.5em;
+  font-weight: bolder;
+  cursor: pointer;
+}
+.initials {
+  padding: 0.6em;
+  border-radius: 50%;
+  background: gold;
+  color: #000;
+  font-weight: bolder;
+  text-transform: uppercase;
+}

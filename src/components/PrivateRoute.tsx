@@ -5,7 +5,8 @@ import { IuserState } from '../actions/types';
 import { RootState } from '../store';
 
 interface IPrivate {
-    component: React.ReactElement;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    component: React.ComponentType<any>;
     next: string;
     auth: IuserState;
 }
