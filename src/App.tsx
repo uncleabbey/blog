@@ -6,13 +6,13 @@ import store from './store';
 import Home from './containers/Home';
 import Nav from './components/layouts/Nav';
 import Login from './containers/Login';
-import { getUser } from './actions/users';
+import { loadUser } from './actions/users';
 // import AddPost from './containers/AddPost';
 // import PrivateRoute from './components/PrivateRoute';
 
 function App(): React.ReactElement {
     useEffect(() => {
-        store.dispatch(getUser());
+        store.dispatch(loadUser());
     }, []);
     return (
         <Provider store={store}>

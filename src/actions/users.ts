@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as types from './types';
-import { Dispatch, AnyAction } from 'redux';
+import { Action, Dispatch } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 import axios from 'axios';
 // import { tokenConfig } from '../utils/config';
 // import { RootState } from '../store';
-import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+// import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { tokenConfig } from '../utils/config';
+import { RootState } from '../store';
 
 interface LoginActionType {
     email: string;
@@ -66,29 +70,20 @@ export const getUser = () => async (dispatch: Dispatch) => {
     }
 };
 
-export const loadUser = (): ThunkAction<Promise<void>, unknown, unknown, AnyAction> => {
-    return async (dispatch: ThunkDispatch<unknown, unknown, AnyAction>): Promise<void> => {
+export const loadUser: ThunkAction<void, RootState, unknown, Action<string>> = () => {
+    return async (dispatch: (arg0: { type: string; user?: any }) => void, getState: () => RootState) => {
         const url = 'http://localhost:5000/api/v1/users/me';
-        return new Promise<void>((resolve) => {
+        try {
+            const res = await axios.get(url, tokenConfig(getState));
             dispatch({
-                type: types.LOADING,
+                type: types.GET_USER,
+                user: res.data.data.user,
             });
-            axios.get(url).then((res) => {
-                console.log(res.data);
-                dispatch({
-                    type: types.GET_USER,
-                    payload: res.data,
-                });
-                resolve();
+        } catch (error) {
+            console.log(error);
+            dispatch({
+                type: types.USER_ERROR,
             });
-            // .catch((error) => {
-            //     console.log(error.response.data);
-            //     dispatch({
-            //         type: types.USER_ERROR,
-            //         payload: error,
-            //     });
-            //     reject(error);
-            // });
-        });
+        }
     };
 };

@@ -1,3 +1,5 @@
+// import { Action } from 'redux';
+
 export const USER_REG_SUCCESS = 'USER_REG_SUCCESS';
 export const USER_ERROR = 'USER_ERROR';
 export const GET_USER = 'GET_USER';
@@ -46,7 +48,10 @@ export interface Loading {
 
 export interface GetUserAction {
     type: 'GET_USER';
+}
+export interface getUserInfoAction {
+    type: string;
     user: UserType;
 }
 
-export type UserAction = LoginUserAction | GetUserAction | Loading | registerUserAction;
+export type UserAction = LoginUserAction | GetUserAction | Loading | registerUserAction | getUserInfoAction;
