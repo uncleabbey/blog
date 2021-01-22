@@ -51,7 +51,7 @@ const LoggedOut = () => (
             </NavLink>{' '}
         </li>
         <li>
-            <NavLink to="/signup" className="signup-link">
+            <NavLink to="/register" className="signup-link">
                 Create account
             </NavLink>
         </li>

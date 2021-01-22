@@ -6,6 +6,7 @@ export const LOADING = 'LOADING';
 export const LOGIN_SUCCESSS = 'LOGIN_SUCCESSS';
 export const GOOGLE_SUCCESS = 'GOOGLE_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const GET_ERRORS = 'GET_ERRORS';
 
@@ -54,15 +55,12 @@ export interface Loading {
 
 export interface GetUserAction {
     type: 'GET_USER';
+    user: UserType;
 }
 export interface getUserInfoAction {
     type: string;
     user: UserType;
 }
-<<<<<<< HEAD
-
-export type UserAction = LoginUserAction | GetUserAction | Loading | registerUserAction | getUserInfoAction;
-=======
 export interface getErrorAction {
     type: typeof GET_ERRORS;
     payload: {
@@ -80,4 +78,3 @@ export type UserAction =
     | loginErrorAction
     | GoogleAuth;
 export type ErrorAction = getErrorAction;
->>>>>>> 291cf7c22a4685487f3082ad19d5ece5dae6e52a
