@@ -1,7 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { IuserState } from '../actions/types';
+import { IuserState } from '../actions/userTypes';
 import { RootState } from '../store';
 
 interface IPrivate {

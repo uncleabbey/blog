@@ -7,6 +7,7 @@ import Nav from './components/layouts/Nav';
 import Login from './containers/Login';
 import { getUser } from './actions/users';
 import Alerts from './components/layouts/Alerts';
+import Register from './containers/Register';
 // import AddPost from './containers/AddPost';
 // import PrivateRoute from './components/PrivateRoute';
 
@@ -23,6 +24,7 @@ function App(): React.ReactElement {
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/login" component={Login} />
+                    <Route exact path="/register" component={Register} />
                     {/* <PrivateRoute exact path="/posts/add" component={AddPost} next={'posts/add'} /> */}
                 </Switch>
             </div>

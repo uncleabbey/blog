@@ -1,4 +1,4 @@
-import { GET_ERRORS, ErrorAction } from '../actions/types';
+import { GET_ERRORS, ErrorAction } from '../actions/userTypes';
 
 interface ErrorProps {
     msg: string;

@@ -6,6 +6,7 @@ export const LOADING = 'LOADING';
 export const LOGIN_SUCCESSS = 'LOGIN_SUCCESSS';
 export const GOOGLE_SUCCESS = 'GOOGLE_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const GET_ERRORS = 'GET_ERRORS';
 
@@ -54,6 +55,10 @@ export interface Loading {
 
 export interface GetUserAction {
     type: 'GET_USER';
+    user: UserType;
+}
+export interface getUserInfoAction {
+    type: string;
     user: UserType;
 }
 export interface getErrorAction {
