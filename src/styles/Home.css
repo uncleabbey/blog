@@ -1,0 +1,105 @@
+.posts-wrapper {
+  background: #c1c1c1;
+  padding: 2em;
+}
+
+.posts-container {
+  width: 50%;
+  /* background: red; */
+  margin: 0 auto;
+  text-align: center;
+}
+.posts-container > h1 {
+  text-align: left;
+  font-size: 15px;
+  margin-left: 2em;
+}
+.loading {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.post-card {
+  background: #ffffff;
+  padding: 1em;
+  margin: 1em;
+}
+.post-card img {
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
+}
+.post-card  header {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+.name-date {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.name-date p {
+  font-size: 12px;
+  margin-bottom: 0;
+  font-weight: bolder;
+}
+.name-date span {
+  margin-top: 0;
+  font-size: 12px;
+}
+
+.post-card-body h2 {
+  margin-top: 0;
+}
+.post-card-body  a {
+  text-decoration: none;
+  color: #000;
+}
+.post-card-body  a:hover {
+  color: blue;
+}
+.post-card-footer {
+  text-align: left;
+}
+.post-card-footer a {
+  text-decoration: none;
+  color: black;
+  margin-left: 2em;
+}
+.post-card-footer a > .comment-icon {
+  margin-left: .5em;
+}
+.post-card-footer a:hover {
+  background: grey;
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 10%;
+  margin: 0 auto;
+}
+.pagination button {
+  padding: 1em;
+  font-size: 1em;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.left-btn {
+  background: #E2E2EA;
+  box-shadow: 4px 5px 20px #0000001A;
+  margin-right: 5px;
+}
+.right-btn {
+  background: #262A41;
+  box-shadow: 4px 5px 20px #0000001A;
+}
+button:disabled {
+  background: #d3d3d3;
+  cursor: not-allowed;
+}

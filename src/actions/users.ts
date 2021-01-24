@@ -32,7 +32,7 @@ export const loginUser = (user: LoginActionType) => async (dispatch: Dispatch) =
             token,
         });
     } catch (error) {
-        console.log(error.response.data);
+        // console.log(error.response.data);
         dispatch(
             returnErrors(
                 error.response && error.response.data ? error.response.data.error : '!!opps. Something went wrong',
@@ -65,7 +65,7 @@ export const registerUser = (user: LoginActionType) => async (dispatch: Dispatch
             token,
         });
     } catch (error) {
-        console.log(error.response.data);
+        // console.log(error.response.data);
         dispatch(
             returnErrors(
                 error.response && error.response.data ? error.response.data.error : '!!opps. Something went wrong',

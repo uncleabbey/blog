@@ -2,6 +2,10 @@
     background: #000;
     color: white;
 }
+.header h3 > a {
+  text-decoration: none;
+  color: #ffffff;
+}
 .header,
 .header > nav > ul {
     display: flex;

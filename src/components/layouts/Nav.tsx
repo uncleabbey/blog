@@ -74,7 +74,9 @@ const Nav = (): React.ReactElement => {
     };
     return (
         <div className="header">
-            <h3>Uncleabbey</h3>
+            <h3>
+                <NavLink to="/">Uncleabbey</NavLink>{' '}
+            </h3>
             <SearchForm search={search} handleChange={handleChange} handleSubmit={handleSubmit} />
             <nav className="nav">
                 <ul>
