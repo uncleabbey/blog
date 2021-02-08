@@ -1,5 +1,7 @@
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';
+export const ADD_POST = 'ADD_POST';
+export const ADD_COMMENT = 'ADD_COMMENT';
 export const GET_PAGE_NO = 'GET_PAGE_NO';
 export const POST_LOADING = 'POST_LOADING';
 
@@ -15,7 +17,7 @@ export interface Icomment {
 
 export interface IPost {
     title: string;
-    body?: string;
+    body: string;
     modifiedAt: string;
     _id: string;
     author: {
@@ -46,4 +48,14 @@ export interface setPage {
     payload: number;
 }
 
-export type PostAction = IPostLoading | IgetPostsAction | IgetPostAction | setPage;
+export interface IaddComment {
+    type: typeof ADD_COMMENT;
+    payload: Icomment;
+}
+
+export interface IAddPost {
+    type: typeof ADD_POST;
+    payload: IPost;
+}
+
+export type PostAction = IPostLoading | IgetPostsAction | IgetPostAction | setPage | IaddComment | IAddPost;

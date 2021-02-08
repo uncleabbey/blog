@@ -1,25 +1,26 @@
 import { Redirect, Route } from 'react-router-dom';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { IuserState } from '../actions/userTypes';
+// import { IuserState } from '../actions/userTypes';
 import { RootState } from '../store';
 
 interface IPrivate {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     component: React.ComponentType<any>;
     next: string;
-    auth: IuserState;
+    path?: string;
+    exact?: boolean;
 }
 
-const PrivateRoute = ({ component: Component, next, auth, ...rest }: IPrivate) => {
+const PrivateRoute = ({ component: Component, next, ...rest }: IPrivate) => {
     // eslint-disable-next-line no-param-reassign
-    auth = useSelector((state: RootState) => state.users);
+    const auth = useSelector((state: RootState) => state.users);
     return (
         <Route
             {...rest}
             render={(props) => {
                 if (auth.loading) return <h2>Loading...</h2>;
-                if (!auth.isAunthenticated) return <Redirect to={`/sign-in?next=${next}`} />;
+                if (!auth.isAunthenticated) return <Redirect to={`/login?next=${next}`} />;
                 return <Component {...props} />;
             }}
         />

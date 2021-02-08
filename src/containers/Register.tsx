@@ -4,7 +4,7 @@ import Input from './../components/layouts/Inputs';
 import '../styles/Login.css';
 import Button from './../components/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { googleAuth, registerUser } from '../actions/users';
+import { registerUser } from '../actions/users';
 import { RootState } from '../store';
 
 function validateEmail(email: string) {
@@ -158,7 +158,6 @@ const Register = (): React.ReactElement<HTMLDivElement> => {
             });
         }
     };
-    const handleGoogleAuth = () => dispacth(googleAuth());
     if (isAunthenticated) {
         return <Redirect to={'/'} />;
     }
@@ -168,15 +167,7 @@ const Register = (): React.ReactElement<HTMLDivElement> => {
                 <div className="intro">
                     <h5>Welcome to Uncleabbey Blog</h5>
                 </div>
-                <div className="socials">
-                    <div className="google" onClick={handleGoogleAuth}>
-                        <img
-                            src="https://res.cloudinary.com/kayode/image/upload/v1610797945/google_te8q5j.svg"
-                            alt="icon"
-                        />
-                        Continue with Google
-                    </div>
-                </div>
+                <div className="socials"></div>
                 <div className="form-container">
                     <Form
                         nameError={errors.nameError}
