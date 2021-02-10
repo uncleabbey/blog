@@ -5,6 +5,7 @@ export const GET_USER = 'GET_USER';
 export const LOADING = 'LOADING';
 export const LOGIN_SUCCESSS = 'LOGIN_SUCCESSS';
 export const GOOGLE_SUCCESS = 'GOOGLE_SUCCESS';
+export const GOOGLE_FAIL = 'GOOGLE_FAIL';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const LOGOUT = 'LOGOUT';
@@ -78,3 +79,4 @@ export type UserAction =
     | loginErrorAction
     | GoogleAuth;
 export type ErrorAction = getErrorAction;
+

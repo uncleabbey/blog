@@ -90,7 +90,6 @@ export const getUser = () => async (dispatch: Dispatch, getState: () => RootStat
             user: data,
         });
     } catch (error) {
-        console.log(error.response.data);
         dispatch(
             returnErrors(
                 error.response && error.response.data ? error.response.data.error : '!!opps. Something went wrong',
@@ -105,14 +104,19 @@ export const getUser = () => async (dispatch: Dispatch, getState: () => RootStat
 
 export const logoutUser = () => (dispatch: Dispatch) => dispatch({ type: types.LOGOUT });
 
-export const googleAuth = () => async (dispatch: Dispatch) => {
+interface GoogleI {
+    name: string;
+    email: string;
+}
+export const googleAuth = ({ name, email }: GoogleI) => async (dispatch: Dispatch) => {
     const url = 'http://localhost:5000/api/v1/users/google';
     try {
-        const res = await axios.get(url);
+        const body = JSON.stringify({ name, email });
+        const res = await axios.post(url, body);
         console.log(res.data);
         const { data } = res.data;
         return dispatch({
-            type: types.GET_USER,
+            type: types.GOOGLE_SUCCESS,
             user: data,
         });
     } catch (error) {
@@ -123,7 +127,7 @@ export const googleAuth = () => async (dispatch: Dispatch) => {
             ),
         );
         return dispatch({
-            type: types.USER_ERROR,
+            type: types.LOGIN_FAIL,
         });
     }
 };

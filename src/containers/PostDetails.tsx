@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { getPost } from './../actions/posts';
+import { addComment, getPost } from './../actions/posts';
 import '../styles/PostDetails.css';
 import moment from 'moment';
 import { Icomment } from './../actions/postTypes';
 import { Link } from 'react-router-dom';
 
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 type IForm = {
     commentBody?: string;
     handleChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     handleClick?: () => void;
+    handleSubmit?: (e: React.FormEvent) => void;
 };
-const CommentForm = ({ commentBody, handleChange, handleClick }: IForm) => {
+const CommentForm = ({ commentBody, handleChange, handleClick, handleSubmit }: IForm) => {
     return (
-        <form onClick={handleClick}>
+        <form onClick={handleClick} onSubmit={handleSubmit}>
             <div>
                 <img
                     className="avatar"
@@ -23,6 +27,11 @@ const CommentForm = ({ commentBody, handleChange, handleClick }: IForm) => {
                 />
             </div>
             <textarea name="comment" value={commentBody} onChange={handleChange}></textarea>
+            <div>
+                <button type="submit" className="comment-button">
+                    <FontAwesomeIcon icon={faPaperPlane} />
+                </button>
+            </div>
         </form>
     );
 };
@@ -57,6 +66,7 @@ type Iprops = {
 };
 const PostDetails = (props: Iprops): React.ReactElement<HTMLDivElement> => {
     const post = useSelector((state: RootState) => state.posts.post);
+    const comments = useSelector((state: RootState) => state.posts.comments);
     const loading = useSelector((state: RootState) => state.posts.loading);
     const isAutheticated = useSelector((state: RootState) => state.users.isAunthenticated);
     const dispatch = useDispatch();
@@ -64,7 +74,15 @@ const PostDetails = (props: Iprops): React.ReactElement<HTMLDivElement> => {
     const [commentBody, setCommentBody] = useState('');
     // const [display, setDisplay] = useState(false);
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setCommentBody(e.target.value);
-
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // const data = {
+        //     body: commentBody,
+        // };
+        // console.log(data);
+        dispatch(addComment(props.match.params.id, commentBody));
+        setCommentBody('');
+    };
     useEffect(() => {
         dispatch(getPost(props.match.params.id));
     }, [props.match.params.id]);
@@ -116,14 +134,21 @@ const PostDetails = (props: Iprops): React.ReactElement<HTMLDivElement> => {
                                     </span>
                                 </section>
                             </header>
-                            <main className="post-details-body">{post?.body}</main>
+                            <main className="post-details-body">
+                                <div className="post--body" dangerouslySetInnerHTML={{ __html: post.body }} />
+                                {/* {post?.body} */}
+                            </main>
                         </div>
                     )}
                     <hr />
                     <footer className="post-details-footer">
                         <h3>Discussion</h3>
                         {isAutheticated ? (
-                            <CommentForm commentBody={commentBody} handleChange={handleChange} />
+                            <CommentForm
+                                commentBody={commentBody}
+                                handleChange={handleChange}
+                                handleSubmit={handleSubmit}
+                            />
                         ) : (
                             <div data-toggle="modal" data-target="#exampleModal3">
                                 <CommentForm />
@@ -131,8 +156,8 @@ const PostDetails = (props: Iprops): React.ReactElement<HTMLDivElement> => {
                         )}
 
                         <div className="comment-container">
-                            {post
-                                ? post.comments.map(({ _id, body, user, createdAt }) => (
+                            {comments
+                                ? comments.map(({ _id, body, user, createdAt }) => (
                                       <Comment key={_id} _id={_id} body={body} user={user} createdAt={createdAt} />
                                   ))
                                 : ''}

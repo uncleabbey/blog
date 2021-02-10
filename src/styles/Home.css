@@ -103,3 +103,9 @@ button:disabled {
   background: #d3d3d3;
   cursor: not-allowed;
 }
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}

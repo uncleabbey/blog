@@ -1,0 +1,38 @@
+.create-post-form {
+  padding: 3em;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #c1c1c1;
+}
+.create-post-form form {
+  width: 50%;
+  background: #fff;
+  padding: 1em;
+}
+.form-title {
+  width: 100%;
+  font-size: 1.5em;
+  font-weight: bolder;
+}
+.form-body div:last-child {
+  height: 30vh;
+  overflow-y: scroll;
+}
+.form-group-quill {
+  padding: 0 1em;
+}
+.form-btn-cont {
+  margin: 1em  auto;
+  text-align: center;
+}
+.form-btn-cont button {
+  padding: 1em 2em;
+  border: 0;
+  outline: 0;
+  background: blue;
+  color: white;
+  font-weight: bolder;
+}

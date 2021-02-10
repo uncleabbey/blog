@@ -33,6 +33,11 @@ type LoggedInProps = {
 };
 const LoggedIn = ({ name, handleClick }: LoggedInProps) => (
     <>
+        <li className="add-post">
+            <NavLink to="/create" className="add-post-link">
+                Create a Post
+            </NavLink>
+        </li>
         <li>
             <span className="initials">{getInitial(name)}</span>
         </li>

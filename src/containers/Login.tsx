@@ -4,8 +4,12 @@ import Input from './../components/layouts/Inputs';
 import '../styles/Login.css';
 import Button from './../components/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { googleAuth, loginUser } from '../actions/users';
+import { loginUser } from '../actions/users';
+// import { returnErrors } from '../actions/error';
+// import * as types from '../actions/userTypes';
 import { RootState } from '../store';
+import GoogleLogin from 'react-google-login';
+import axios from 'axios';
 
 function validateEmail(email: string) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -65,7 +69,13 @@ const Form = ({
     </form>
 );
 
-const Login = (): React.ReactElement<HTMLDivElement> => {
+type LoginProps = {
+    location: {
+        search: string;
+    };
+};
+
+const Login = (props: LoginProps): React.ReactElement<HTMLDivElement> => {
     const dispacth = useDispatch();
     const isAunthenticated = useSelector((state: RootState) => state.users.isAunthenticated);
     const [inputs, setInputs] = useState({
@@ -121,9 +131,44 @@ const Login = (): React.ReactElement<HTMLDivElement> => {
             });
         }
     };
-    const handleGoogleAuth = () => dispacth(googleAuth());
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleLogin = async (res: any) => {
+        const {
+            profileObj: { email, name },
+        } = res;
+        const url = 'http://localhost:5000/api/v1/users/google';
+        try {
+            const body = JSON.stringify({ name, email });
+            const config = {
+                headers: {
+                    'Content-type': 'application/json',
+                },
+            };
+            const res = await axios.post(url, body, config);
+            console.log(res.data);
+            // const { data } = res.data;
+            // dispacth({
+            //     type: types.GOOGLE_SUCCESS,
+            //     user: data,
+            // });
+        } catch (error) {
+            console.log(error.response.data);
+            // dispacth(
+            //     returnErrors(
+            //         error.response && error.response.data ? error.response.data.error : '!!opps. Something went wrong',
+            //         error.response && error.response.status ? error.response.status : 500,
+            //     ),
+            // );
+            // return dispacth({
+            //     type: types.LOGIN_FAIL,
+            // });
+        }
+    };
+
+    const query = new URLSearchParams(props.location.search);
+    const next = query.get('next');
     if (isAunthenticated) {
-        return <Redirect to={'/'} />;
+        return <Redirect to={next === null ? '/' : `/${next}`} />;
     }
     return (
         <div>
@@ -132,13 +177,13 @@ const Login = (): React.ReactElement<HTMLDivElement> => {
                     <h5>Welcome to Uncleabbey Blog</h5>
                 </div>
                 <div className="socials">
-                    <div className="google" onClick={handleGoogleAuth}>
-                        <img
-                            src="https://res.cloudinary.com/kayode/image/upload/v1610797945/google_te8q5j.svg"
-                            alt="icon"
-                        />
-                        Continue with Google
-                    </div>
+                    <GoogleLogin
+                        clientId="786652250330-rmpqe6g99ot63af6dujrha271u56vlds.apps.googleusercontent.com"
+                        buttonText="Log in with Google"
+                        onSuccess={handleLogin}
+                        onFailure={handleLogin}
+                        cookiePolicy={'single_host_origin'}
+                    />
                 </div>
                 <div className="form-container">
                     <span>Have a Password?</span>

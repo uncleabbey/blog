@@ -3,17 +3,32 @@ import * as types from '../actions/postTypes';
 interface IpostReducerState {
     loading: boolean;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    posts?: types.IPost[];
-    post?: types.IPost;
+    posts: types.IPost[];
+    post: types.IPost;
     count: number;
     page: number;
     pageSize: number;
+    comments: types.Icomment[];
 }
 const initialState: IpostReducerState = {
     count: 10,
     loading: false,
     page: 1,
     pageSize: 10,
+    comments: [],
+    posts: [],
+    post: {
+        _id: '',
+        author: {
+            _id: '',
+            email: '',
+            name: '',
+        },
+        comments: [],
+        body: '',
+        modifiedAt: '',
+        title: '',
+    },
 };
 
 const postReducer = (state = initialState, action: types.PostAction): IpostReducerState => {
@@ -40,7 +55,17 @@ const postReducer = (state = initialState, action: types.PostAction): IpostReduc
                 ...state,
                 loading: false,
                 post: action.payload.post,
+                comments: action.payload.post.comments,
             };
+        case types.ADD_COMMENT:
+            return {
+                ...state,
+                comments: [...state.comments, action.payload],
+            };
+
+        case types.ADD_POST:
+            return { ...state, posts: [action.payload, ...state.posts] };
+
         default:
             return state;
     }
