@@ -111,13 +111,11 @@ export const googleAuth = () => async (dispatch: Dispatch) => {
         const res = await axios.get(url);
         console.log(res.data);
         const { data } = res.data;
-        // console.log(user);
         return dispatch({
             type: types.GET_USER,
             user: data,
         });
     } catch (error) {
-        // console.log(error.response.data);
         dispatch(
             returnErrors(
                 error.response && error.response.data ? error.response.data.error : '!!opps. Something went wrong',
