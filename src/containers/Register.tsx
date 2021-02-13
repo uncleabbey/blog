@@ -74,7 +74,7 @@ const Form = ({
                 value={password}
                 handleBlur={handleBlur}
             />
-            ;<small className="red">{passwordError}</small>
+            <small className="red">{passwordError}</small>
         </div>
         <div className="form-group">
             <Button name="Register" type="submit" className="submit-btn" disabled={disabled} />

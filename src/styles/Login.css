@@ -60,3 +60,35 @@
     display: block;
     text-align: center;
 }
+.google {
+    color: red;
+    width: 200px;
+}
+@media screen and (max-width: 500px) {
+    .login-form {
+        width: 100%;
+        padding: 1em;
+    }
+    .submit-btn {
+        padding: 0.4em 1em;
+        font-weight: bold;
+    }
+    .form-group input {
+        padding: 0.5em;
+        width: 90%;
+    }
+}
+@media screen and (min-width: 500px) and (max-width: 900px) {
+    .login-form {
+        width: 60%;
+        padding: 1em;
+    }
+    .submit-btn {
+        padding: 0.7em 1em;
+        font-weight: bold;
+    }
+    .form-group input {
+        padding: 0.7em;
+        width: 70%;
+    }
+}

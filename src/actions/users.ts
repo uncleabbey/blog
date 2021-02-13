@@ -11,8 +11,11 @@ interface LoginActionType {
     password: string;
 }
 
+// const baseUrl = 'http://localhost:5000/api/v1/users';
+const baseUrl = 'https://uncleabbey-blog.herokuapp.com/api/v1/users';
+
 export const loginUser = (user: LoginActionType) => async (dispatch: Dispatch) => {
-    const url = 'http://localhost:5000/api/v1/users/login';
+    const url = `${baseUrl}/login`;
     // const url = 'https://uncleabbey-blog.herokuapp.com/api/v1/users/login';
     const body = JSON.stringify(user);
     const config = {
@@ -45,7 +48,7 @@ export const loginUser = (user: LoginActionType) => async (dispatch: Dispatch) =
     }
 };
 export const registerUser = (user: LoginActionType) => async (dispatch: Dispatch) => {
-    const url = 'http://localhost:5000/api/v1/users/register';
+    const url = `${baseUrl}/register`;
     // const url = 'https://uncleabbey-blog.herokuapp.com/api/v1/users/login';
     const body = JSON.stringify(user);
     const config = {
@@ -79,10 +82,9 @@ export const registerUser = (user: LoginActionType) => async (dispatch: Dispatch
 };
 
 export const getUser = () => async (dispatch: Dispatch, getState: () => RootState) => {
-    const url = 'http://localhost:5000/api/v1/users/me';
+    const url = `${baseUrl}/me`;
     try {
         const res = await axios.get(url, tokenConfig(getState));
-        console.log(res.data);
         const { data } = res.data;
         // console.log(user);
         return dispatch({
@@ -109,18 +111,25 @@ interface GoogleI {
     email: string;
 }
 export const googleAuth = ({ name, email }: GoogleI) => async (dispatch: Dispatch) => {
-    const url = 'http://localhost:5000/api/v1/users/google';
+    const url = `${baseUrl}/google`;
     try {
         const body = JSON.stringify({ name, email });
-        const res = await axios.post(url, body);
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+            },
+        };
+        const res = await axios.post(url, body, config);
         console.log(res.data);
-        const { data } = res.data;
+        const {
+            data: { user, token },
+        } = res.data;
         return dispatch({
             type: types.GOOGLE_SUCCESS,
-            user: data,
+            user,
+            token,
         });
     } catch (error) {
-        // console.log(error.response.data);
         dispatch(
             returnErrors(
                 error.response && error.response.data ? error.response.data.error : '!!opps. Something went wrong',

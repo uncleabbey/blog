@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { addComment, getPost } from './../actions/posts';
+import { addComment, getPost, deletePost } from './../actions/posts';
 import '../styles/PostDetails.css';
 import moment from 'moment';
 import { Icomment } from './../actions/postTypes';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useHistory } from 'react-router-dom';
 
 type IForm = {
     commentBody?: string;
@@ -16,7 +17,7 @@ type IForm = {
     handleClick?: () => void;
     handleSubmit?: (e: React.FormEvent) => void;
 };
-const CommentForm = ({ commentBody, handleChange, handleClick, handleSubmit }: IForm) => {
+export const CommentForm = ({ commentBody, handleChange, handleClick, handleSubmit }: IForm) => {
     return (
         <form onClick={handleClick} onSubmit={handleSubmit}>
             <div>
@@ -69,7 +70,9 @@ const PostDetails = (props: Iprops): React.ReactElement<HTMLDivElement> => {
     const comments = useSelector((state: RootState) => state.posts.comments);
     const loading = useSelector((state: RootState) => state.posts.loading);
     const isAutheticated = useSelector((state: RootState) => state.users.isAunthenticated);
+    const user = useSelector((state: RootState) => state.users.user);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [commentBody, setCommentBody] = useState('');
     // const [display, setDisplay] = useState(false);
@@ -82,6 +85,10 @@ const PostDetails = (props: Iprops): React.ReactElement<HTMLDivElement> => {
         // console.log(data);
         dispatch(addComment(props.match.params.id, commentBody));
         setCommentBody('');
+    };
+    const handleDelete = () => {
+        dispatch(deletePost(props.match.params.id));
+        history.push('/');
     };
     useEffect(() => {
         dispatch(getPost(props.match.params.id));
@@ -118,6 +125,25 @@ const PostDetails = (props: Iprops): React.ReactElement<HTMLDivElement> => {
                         </div>
                     ) : (
                         <div className="post-details">
+                            <div className="btn-group">
+                                <Link to="/">
+                                    <button className="btn btn-outline-success">Back</button>{' '}
+                                </Link>
+                                {String(user?._id) === String(post.author._id) ? (
+                                    <>
+                                        <Link to={`/edit/${post?._id}`}>
+                                            <button className="btn btn-outline-primary">Edit</button>{' '}
+                                        </Link>
+                                        <a href="#">
+                                            <button className="btn btn-danger" onClick={handleDelete}>
+                                                Delete
+                                            </button>
+                                        </a>
+                                    </>
+                                ) : (
+                                    ''
+                                )}
+                            </div>
                             <header>
                                 <h1>{post?.title}</h1>
                                 <section className="author-details">

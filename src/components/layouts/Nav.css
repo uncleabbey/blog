@@ -3,35 +3,39 @@
     color: white;
 }
 .header h3 > a {
-  text-decoration: none;
-  color: #ffffff;
+    text-decoration: none;
+    color: #ffffff;
+}
+.hamburger {
+    display: none;
+    font-size: 2em;
 }
 .header,
 .header > nav > ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .5em 3em;
+    padding: 0.5em 3em;
 }
 .add-post a {
-  background: blue;
-  color: #fff;
-  padding: 0.7em;
-  text-decoration: none;
+    background: blue;
+    color: #fff;
+    padding: 0.7em;
+    text-decoration: none;
 }
 /* .add-post a:hover */
 .search-input {
-  padding: 0.7em;
-  border: 1px solid grey;
-  width: 400px;
+    padding: 0.7em;
+    border: 1px solid grey;
+    width: 400px;
 }
 
 .header > nav > ul {
-  list-style: none;
+    list-style: none;
 }
 .header > nav > ul > li {
-  margin: 0 2em;
-  margin-top: 5px;
+    margin: 0 2em;
+    margin-top: 5px;
 }
 .signup-link {
     background: gold;
@@ -39,6 +43,7 @@
     color: black;
     font-weight: bolder;
     text-decoration: none;
+    margin: 0 2em;
 }
 .login-link {
     background: blue;
@@ -47,19 +52,94 @@
     text-decoration: none;
 }
 .logout {
-  border: 0;
-  outline: 0;
-  background: red;
-  color: white;
-  padding: 0.5em;
-  font-weight: bolder;
-  cursor: pointer;
+    border: 0;
+    outline: 0;
+    background: red;
+    color: white;
+    padding: 0.5em;
+    font-weight: bolder;
+    cursor: pointer;
 }
 .initials {
-  padding: 0.6em;
-  border-radius: 50%;
-  background: gold;
-  color: #000;
-  font-weight: bolder;
-  text-transform: uppercase;
+    padding: 0.6em;
+    border-radius: 50%;
+    background: gold;
+    color: #000;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 1024px) {
+    .header > nav > ul {
+        padding: 0.5em;
+        margin: 0 1em;
+    }
+    .search-form {
+        display: none;
+    }
+    .logout {
+        padding: 0.4em;
+    }
+    .initials {
+        padding: 0.6em;
+        font-size: 15px;
+        display: block;
+    }
+    .add-post a {
+        display: block;
+        padding: 0;
+    }
+}
+@media screen and (max-width: 620px) {
+    .header {
+        padding: 0.4em;
+    }
+    .header h3 > a {
+        font-size: 18px;
+    }
+    .search-form {
+        display: none;
+    }
+    .nav {
+        position: absolute;
+        top: 3em;
+        background: #000;
+        width: 100%;
+    }
+    .nav > ul {
+        flex-direction: column;
+    }
+    #hide {
+        display: none;
+    }
+    #show {
+        display: block;
+    }
+    .hamburger {
+        display: block;
+    }
+    .logout {
+        margin: 0.7em 0;
+        padding: 0.4em;
+    }
+    .initials {
+        margin: 1em 0;
+        padding: 0.6em;
+        font-size: 15px;
+        display: block;
+    }
+    .add-post-link {
+        margin: 1em 0;
+        padding: 0.3em;
+    }
+    .signup-link {
+        padding: 0.15em;
+        display: block;
+        margin: 1em 0;
+    }
+    .login-link {
+        display: block;
+        padding: 0.3em;
+        color: whitesmoke;
+    }
 }
