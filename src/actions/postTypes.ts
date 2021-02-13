@@ -1,6 +1,8 @@
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';
+export const EDIT_POST = 'EDIT_POST';
 export const ADD_POST = 'ADD_POST';
+export const DELETE_POST = 'DELETE_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const GET_PAGE_NO = 'GET_PAGE_NO';
 export const POST_LOADING = 'POST_LOADING';
@@ -57,5 +59,21 @@ export interface IAddPost {
     type: typeof ADD_POST;
     payload: IPost;
 }
+export interface IEditPost {
+    type: typeof EDIT_POST;
+    payload: IPost;
+}
+export interface IdeletePost {
+    type: typeof DELETE_POST;
+    payload: string;
+}
 
-export type PostAction = IPostLoading | IgetPostsAction | IgetPostAction | setPage | IaddComment | IAddPost;
+export type PostAction =
+    | IPostLoading
+    | IgetPostsAction
+    | IgetPostAction
+    | setPage
+    | IaddComment
+    | IAddPost
+    | IEditPost
+    | IdeletePost;

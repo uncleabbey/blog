@@ -7,6 +7,8 @@ import getInitial from '../../utils/initials';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { logoutUser } from '../../actions/users';
+import { faHamburger, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type SearchProps = {
     search: string;
@@ -28,12 +30,12 @@ const SearchForm = ({ handleSubmit, handleChange, search }: SearchProps) => (
 
 type LoggedInProps = {
     name: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     handleClick: () => void;
+    handleClose: () => void;
 };
-const LoggedIn = ({ name, handleClick }: LoggedInProps) => (
+const LoggedIn = ({ name, handleClick, handleClose }: LoggedInProps) => (
     <>
-        <li className="add-post">
+        <li className="add-post" onClick={handleClose}>
             <NavLink to="/create" className="add-post-link">
                 Create a Post
             </NavLink>
@@ -47,15 +49,19 @@ const LoggedIn = ({ name, handleClick }: LoggedInProps) => (
     </>
 );
 
-const LoggedOut = () => (
+type LoggedOutProps = {
+    handleClose: () => void;
+};
+
+const LoggedOut = ({ handleClose }: LoggedOutProps) => (
     <>
-        <li>
+        <li onClick={handleClose}>
             {' '}
             <NavLink to="/login" className="login-link">
                 Login
             </NavLink>{' '}
         </li>
-        <li>
+        <li onClick={handleClose}>
             <NavLink to="/register" className="signup-link">
                 Create account
             </NavLink>
@@ -70,12 +76,24 @@ const Nav = (): React.ReactElement => {
     const error = useSelector((state: RootState) => state.users.error);
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
+    const [show, toggleShow] = useState(false);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value);
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
     };
     const handleLogout = () => {
         dispatch(logoutUser());
+        toggleShow(false);
+    };
+    const handleToggle = () => {
+        if (show) {
+            toggleShow(false);
+        } else {
+            toggleShow(true);
+        }
+    };
+    const handleClose = () => {
+        toggleShow(false);
     };
     return (
         <div className="header">
@@ -83,16 +101,17 @@ const Nav = (): React.ReactElement => {
                 <NavLink to="/">Uncleabbey</NavLink>{' '}
             </h3>
             <SearchForm search={search} handleChange={handleChange} handleSubmit={handleSubmit} />
-            <nav className="nav">
+            <FontAwesomeIcon icon={show ? faTimes : faHamburger} className="hamburger" onClick={handleToggle} />
+            <nav className="nav" id={show ? 'show' : 'hide'}>
                 <ul>
                     {loading ? (
                         ''
                     ) : error ? (
-                        <LoggedOut />
+                        <LoggedOut handleClose={handleClose} />
                     ) : isAunthenticated && user ? (
-                        <LoggedIn name={user.name} handleClick={handleLogout} />
+                        <LoggedIn name={user.name} handleClick={handleLogout} handleClose={handleClose} />
                     ) : (
-                        <LoggedOut />
+                        <LoggedOut handleClose={handleClose} />
                     )}
                 </ul>
             </nav>

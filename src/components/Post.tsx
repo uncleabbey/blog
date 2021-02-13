@@ -16,7 +16,6 @@ type IPostProps = {
 };
 
 const Post = ({ _id, title, modifiedAt, author, comments }: IPostProps): React.ReactElement<HTMLDivElement> => {
-    console.log(moment(modifiedAt).format('MMM Do'));
     return (
         <div className="post-card">
             <header>
@@ -26,11 +25,11 @@ const Post = ({ _id, title, modifiedAt, author, comments }: IPostProps): React.R
                         alt="avatar"
                     />
                 </div>
+                <div>
+                    <p className="author-name">{author.name}</p>
+                </div>
                 <div className="name-date">
-                    <p>{author.name}</p>
-                    <span>
-                        {moment(modifiedAt).format('MMM Do')} ({moment(modifiedAt).startOf('hour').fromNow()})
-                    </span>
+                    <span>{moment(modifiedAt).startOf('seconds').fromNow()}</span>
                 </div>
             </header>
             <div className="post-card-body">

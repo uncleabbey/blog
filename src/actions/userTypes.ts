@@ -79,4 +79,3 @@ export type UserAction =
     | loginErrorAction
     | GoogleAuth;
 export type ErrorAction = getErrorAction;
-

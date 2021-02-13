@@ -1,38 +1,110 @@
 .create-post-form {
-  padding: 3em;
-  min-height: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #c1c1c1;
+    padding: 3em;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #c1c1c1;
 }
 .create-post-form form {
-  width: 50%;
-  background: #fff;
-  padding: 1em;
+    width: 50%;
+    background: #fff;
+    padding: 1em;
 }
 .form-title {
-  width: 100%;
-  font-size: 1.5em;
-  font-weight: bolder;
+    width: 100%;
+    font-size: 1.5em;
+    font-weight: bolder;
 }
 .form-body div:last-child {
-  height: 30vh;
-  overflow-y: scroll;
+    height: 30vh;
+    overflow-y: scroll;
 }
 .form-group-quill {
-  padding: 0 1em;
+    padding: 0 1em;
 }
 .form-btn-cont {
-  margin: 1em  auto;
-  text-align: center;
+    margin: 1em auto;
+    text-align: center;
 }
 .form-btn-cont button {
-  padding: 1em 2em;
-  border: 0;
-  outline: 0;
-  background: blue;
-  color: white;
-  font-weight: bolder;
+    padding: 1em 2em;
+    border: 0;
+    outline: 0;
+    background: blue;
+    color: white;
+    font-weight: bolder;
+}
+.add-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    text-align: left;
+}
+.add-header > button {
+    padding: 0.5em 3em;
+    cursor: pointer;
+    border: 0;
+}
+.create-post-btn {
+    background: lightblue;
+    margin-right: 2em;
+}
+.preview-btn {
+    margin-left: 1em;
+    background: green;
+    color: white;
+}
+#none {
+    display: none;
+}
+#block {
+    display: block;
+}
+.preview-cont {
+    min-height: 70vh;
+    width: 50%;
+    background: #fff;
+    padding: 1em;
+}
+.preview-cont h3 {
+    text-align: center;
+}
+.post-body {
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+.post-body img {
+    max-width: 100%;
+}
+@media screen and (max-width: 500px) {
+    .create-post-form {
+        padding: 5px;
+    }
+    .create-post-form form {
+        width: 100%;
+    }
+    .preview-cont {
+        min-height: 70vh;
+        width: 100%;
+    }
+    .add-header {
+        margin: 1em;
+    }
+    .add-header > button {
+        padding: 0.5em 1em;
+    }
+}
+@media screen and (min-width: 500px) and (max-width: 1200px) {
+    .preview-cont {
+        min-height: 70vh;
+        width: 80%;
+    }
+    .create-post-form {
+        padding: 5px;
+    }
+    .create-post-form form {
+        width: 70%;
+    }
 }

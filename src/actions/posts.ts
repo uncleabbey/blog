@@ -6,17 +6,20 @@ import axios from 'axios';
 import { config, tokenConfig } from '../utils/config';
 // import { tokenConfig } from '../utils/config';
 import { RootState } from '../store';
+
+// const baseUrl = 'http://localhost:5000/api/v1/posts';
+const baseUrl = 'https://uncleabbey-blog.herokuapp.com/api/v1/posts';
 export const getPosts = (limit: number, page: number) => async (dispatch: Dispatch) => {
     dispatch({
         type: types.POST_LOADING,
     });
     try {
-        const url = `http://localhost:5000/api/v1/posts?limit=${limit}&page=${page}`;
+        const url = `${baseUrl}?limit=${limit}&page=${page}`;
         const res = await axios.get(url, config);
         const {
             data: { posts, count },
         } = res.data;
-        console.log(res.data);
+        // console.log(res.data);
         dispatch({
             type: types.GET_POSTS,
             payload: { posts, count },
@@ -35,12 +38,12 @@ export const getPost = (id: string) => async (dispatch: Dispatch) => {
         type: types.POST_LOADING,
     });
     try {
-        const url = `http://localhost:5000/api/v1/posts/${id}`;
+        const url = `${baseUrl}/${id}`;
         const res = await axios.get(url, config);
         const {
             data: { post },
         } = res.data;
-        console.log(res.data);
+        // console.log(res.data);
         dispatch({
             type: types.GET_POST,
             payload: { post },
@@ -61,11 +64,11 @@ export const setCurrentPage = (page: number) => ({
 });
 
 export const addComment = (postId: string, body: string) => async (dispatch: Dispatch, getState: () => RootState) => {
-    const url = `http://localhost:5000/api/v1/posts/${postId}/comments`;
+    const url = `${baseUrl}/${postId}/comments`;
     try {
         const data = JSON.stringify({ body });
         const res = await axios.post(url, data, tokenConfig(getState));
-        console.log(res.data.data);
+        // console.log(res.data.data);
         dispatch({
             type: types.ADD_COMMENT,
             payload: res.data.data,
@@ -81,18 +84,57 @@ export const addComment = (postId: string, body: string) => async (dispatch: Dis
     }
 };
 type addPostData = {
+    id?: string;
     title: string;
     body: string;
 };
 export const addPost = ({ title, body }: addPostData) => async (dispatch: Dispatch, getState: () => RootState) => {
-    const url = `http://localhost:5000/api/v1/posts/`;
+    const url = `${baseUrl}`;
     try {
         const data = JSON.stringify({ title, body });
         const res = await axios.post(url, data, tokenConfig(getState));
-        console.log(res.data.data);
+        // console.log(res.data.data);
         dispatch({
             type: types.ADD_POST,
             payload: res.data.data,
+        });
+    } catch (error) {
+        console.log(error.response.data);
+        dispatch(
+            returnErrors(
+                error.response && error.response.data ? error.response.data.error : '!!opps. Something went wrong',
+                error.response && error.response.status ? error.response.status : 500,
+            ),
+        );
+    }
+};
+
+export const editPost = ({ id, title, body }: addPostData) => async (dispatch: Dispatch, getState: () => RootState) => {
+    const url = `${baseUrl}/${id}`;
+    try {
+        const data = JSON.stringify({ title, body });
+        const res = await axios.patch(url, data, tokenConfig(getState));
+        dispatch({
+            type: types.EDIT_POST,
+            payload: res.data.data,
+        });
+    } catch (error) {
+        console.log(error.response.data);
+        dispatch(
+            returnErrors(
+                error.response && error.response.data ? error.response.data.error : '!!opps. Something went wrong',
+                error.response && error.response.status ? error.response.status : 500,
+            ),
+        );
+    }
+};
+export const deletePost = (id: string) => async (dispatch: Dispatch, getState: () => RootState) => {
+    const url = `${baseUrl}/${id}`;
+    try {
+        await axios.delete(url, tokenConfig(getState));
+        dispatch({
+            type: types.DELETE_POST,
+            payload: id,
         });
     } catch (error) {
         console.log(error.response.data);

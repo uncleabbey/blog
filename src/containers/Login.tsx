@@ -4,12 +4,12 @@ import Input from './../components/layouts/Inputs';
 import '../styles/Login.css';
 import Button from './../components/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../actions/users';
+import { loginUser, googleAuth } from '../actions/users';
 // import { returnErrors } from '../actions/error';
 // import * as types from '../actions/userTypes';
 import { RootState } from '../store';
 import GoogleLogin from 'react-google-login';
-import axios from 'axios';
+// import axios from 'axios';
 
 function validateEmail(email: string) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -61,7 +61,7 @@ const Form = ({
                 value={password}
                 handleBlur={handleBlur}
             />
-            ;<small className="red">{passwordError}</small>
+            <small className="red">{passwordError}</small>
         </div>
         <div className="form-group">
             <Button name="Login" type="submit" className="submit-btn" disabled={disabled} />
@@ -136,33 +136,7 @@ const Login = (props: LoginProps): React.ReactElement<HTMLDivElement> => {
         const {
             profileObj: { email, name },
         } = res;
-        const url = 'http://localhost:5000/api/v1/users/google';
-        try {
-            const body = JSON.stringify({ name, email });
-            const config = {
-                headers: {
-                    'Content-type': 'application/json',
-                },
-            };
-            const res = await axios.post(url, body, config);
-            console.log(res.data);
-            // const { data } = res.data;
-            // dispacth({
-            //     type: types.GOOGLE_SUCCESS,
-            //     user: data,
-            // });
-        } catch (error) {
-            console.log(error.response.data);
-            // dispacth(
-            //     returnErrors(
-            //         error.response && error.response.data ? error.response.data.error : '!!opps. Something went wrong',
-            //         error.response && error.response.status ? error.response.status : 500,
-            //     ),
-            // );
-            // return dispacth({
-            //     type: types.LOGIN_FAIL,
-            // });
-        }
+        dispacth(googleAuth({ name, email }));
     };
 
     const query = new URLSearchParams(props.location.search);
@@ -180,6 +154,7 @@ const Login = (props: LoginProps): React.ReactElement<HTMLDivElement> => {
                     <GoogleLogin
                         clientId="786652250330-rmpqe6g99ot63af6dujrha271u56vlds.apps.googleusercontent.com"
                         buttonText="Log in with Google"
+                        className="google"
                         onSuccess={handleLogin}
                         onFailure={handleLogin}
                         cookiePolicy={'single_host_origin'}
