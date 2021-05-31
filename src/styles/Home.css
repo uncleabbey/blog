@@ -1,160 +1,167 @@
+.color-green {
+  color: green;
+}
 .posts-wrapper {
-    background: #c1c1c1;
-    padding: 2em;
+  background: #fff;
+  padding: 2em;
 }
 
 .posts-container {
-    width: 50%;
-    /* background: red; */
-    margin: 0 auto;
-    text-align: center;
+  width: 70%;
+  min-height: 80vh;
+  /* background: red; */
+  margin: 0 auto;
+  text-align: center;
+  padding: 2em;
 }
 .posts-container > h1 {
-    text-align: left;
-    font-size: 15px;
-    margin-left: 2em;
+  text-align: left;
+  font-size: 15px;
+  margin-left: 2em;
+  margin-top: 2em;
 }
 .loading {
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .post-card {
-    background: #ffffff;
-    padding: 1em;
-    margin: 1em;
+  padding: 1em;
+  margin: 1em;
+  box-shadow: 5px 5px 10px #000;
 }
 .post-card img {
-    margin-top: 10px;
-    width: 50px;
-    height: 50px;
+  margin-top: 10px;
+  width: 50px;
+  height: 50px;
 }
 .post-card .author-name {
-    margin-top: 15px;
-    font-weight: bolder;
+  margin-top: 15px;
+  font-weight: bolder;
 }
 .post-card header {
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
 }
 .name-date {
-    margin-left: 10px;
-    display: flex;
-    justify-content: space-between;
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 .name-date p {
-    font-size: 12px;
-    margin-bottom: 0;
-    font-weight: bolder;
+  font-size: 12px;
+  margin-bottom: 0;
+  font-weight: bolder;
 }
 .name-date span {
-    margin-top: 0;
-    font-size: 12px;
-    display: block;
+  margin-top: 0;
+  font-size: 12px;
+  display: block;
 }
 
 .post-card-body h2 {
-    margin-top: 0;
-    color: blue;
+  margin-top: 0;
+  color: blue;
+  font-size: 25px;
 }
 .post-card-body a {
-    text-decoration: none;
-    color: #000;
+  text-decoration: none;
+  color: #000;
 }
 .post-card-body a:hover {
-    color: red;
+  color: red;
 }
 .post-card-footer {
-    text-align: left;
+  text-align: left;
 }
 .post-card-footer a {
-    text-decoration: none;
-    color: black;
-    margin-left: 2em;
+  text-decoration: none;
+  color: black;
+  margin-left: 2em;
 }
 .post-card-footer a > .comment-icon {
-    margin-left: 0.5em;
+  margin-left: 0.5em;
 }
 .post-card-footer a:hover {
-    background: grey;
+  background: grey;
 }
 .pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 10%;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 10%;
+  margin: 0 auto;
 }
 .pagination button {
-    padding: 1em;
-    font-size: 1em;
-    border: 0;
-    outline: 0;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 0 1em;
+  font-size: 1.5em;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .left-btn {
-    background: #e2e2ea;
-    box-shadow: 4px 5px 20px #0000001a;
-    margin-right: 5px;
+  background: #e2e2ea;
+  box-shadow: 4px 5px 20px #0000001a;
+  margin-right: 5px;
 }
 .right-btn {
-    background: #262a41;
-    box-shadow: 4px 5px 20px #0000001a;
+  background: #262a41;
+  box-shadow: 4px 5px 20px #0000001a;
 }
 button:disabled {
-    background: #d3d3d3;
-    cursor: not-allowed;
+  background: #d3d3d3;
+  cursor: not-allowed;
 }
 .loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
 }
 @media screen and (max-width: 500px) {
-    .posts-wrapper {
-        padding: 1em 0;
-    }
-    .posts-container {
-        width: 100%;
-    }
-    .post-card-body h2 {
-        font-size: 18px;
-    }
-    .post-card-footer small {
-        font-size: 10px;
-    }
-    .pagination {
-        width: 40%;
-        margin: 1em auto;
-    }
-    .pagination button {
-        padding: 0.5em;
-    }
+  .posts-wrapper {
+    padding: 1em 0;
+  }
+  .posts-container {
+    width: 100%;
+  }
+  .post-card-body h2 {
+    font-size: 18px;
+  }
+  .post-card-footer small {
+    font-size: 10px;
+  }
+  .pagination {
+    width: 40%;
+    margin: 1em auto;
+  }
+  .pagination button {
+    padding: 0.5em;
+  }
 }
 @media screen and (min-width: 500px) and (max-width: 1200px) {
-    .posts-wrapper {
-        padding: 1em 0;
-    }
-    .posts-container {
-        width: 80%;
-    }
-    .post-card-body h2 {
-        font-size: 18px;
-    }
-    .post-card-footer small {
-        font-size: 10px;
-    }
-    .pagination {
-        width: 30%;
-        margin: 1em auto;
-    }
-    .pagination button {
-        padding: 0.5em;
-    }
+  .posts-wrapper {
+    padding: 1em 0;
+  }
+  .posts-container {
+    width: 80%;
+  }
+  .post-card-body h2 {
+    font-size: 18px;
+  }
+  .post-card-footer small {
+    font-size: 10px;
+  }
+  .pagination {
+    width: 30%;
+    margin: 1em auto;
+  }
+  .pagination button {
+    padding: 0.5em;
+  }
 }
