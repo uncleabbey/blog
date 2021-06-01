@@ -4,9 +4,9 @@ import error from './error';
 import posts from './posts';
 
 const rootReducer = combineReducers({
-    users,
-    error,
-    posts,
+  users,
+  error,
+  posts,
 });
 
 export default rootReducer;
