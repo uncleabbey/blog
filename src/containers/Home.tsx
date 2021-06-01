@@ -7,6 +7,7 @@ import { getPosts, setCurrentPage } from './../actions/posts';
 import '../styles/Home.css';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NewLoading from '../components/layouts/NewLoading';
 
 const Home = (): React.ReactElement => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Home = (): React.ReactElement => {
       <div className="posts-container">
         <h1>Posts</h1>
         {loading ? (
-          <p className="loading">Loading ......</p>
+          <NewLoading />
         ) : posts.length === 0 ? (
           <div className="loading">
             <h1 className="color-green">No post yet</h1>
