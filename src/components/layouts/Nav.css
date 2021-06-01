@@ -38,12 +38,14 @@
   margin-left: 4em;
   border-radius: 5px;
 }
-
-.header .hamburger {
-  display: none;
+.fa-hamburger,
+.fa-times {
   font-size: 2em;
+  color: green;
 }
-
+.fa-hamburger {
+  display: none;
+}
 .add-post a {
   background: rgb(3, 14, 3);
   color: white;
@@ -152,7 +154,7 @@
   #show {
     display: block;
   }
-  .hamburger {
+  .fa-hamburger {
     display: block;
   }
   .logout {
@@ -175,6 +177,7 @@
     margin: 1em 0;
   }
   .login-link {
+    margin-right: 0;
     display: block;
     padding: 0.3em;
     color: whitesmoke;
