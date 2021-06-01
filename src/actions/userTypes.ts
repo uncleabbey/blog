@@ -12,70 +12,70 @@ export const LOGOUT = 'LOGOUT';
 export const GET_ERRORS = 'GET_ERRORS';
 
 export type UserType = {
-    _id: string;
-    name: string;
-    email: string;
-    isAdmin: boolean;
+  _id: string;
+  name: string;
+  email: string;
+  isAdmin: boolean;
 };
 export interface IuserState {
-    user?: UserType;
-    token: string | null;
-    loading: boolean;
-    error: boolean;
-    isAunthenticated: boolean;
+  user?: UserType;
+  token: string | null;
+  loading: boolean;
+  error: boolean;
+  isAunthenticated: boolean;
 }
 
 export interface LoginUserAction {
-    type: 'LOGIN_SUCCESSS';
-    user: UserType;
-    token: string;
+  type: 'LOGIN_SUCCESSS';
+  user: UserType;
+  token: string;
 }
 export interface GoogleAuth {
-    type: typeof GOOGLE_SUCCESS;
-    user: UserType;
-    token: string;
+  type: typeof GOOGLE_SUCCESS;
+  user: UserType;
+  token: string;
 }
 export interface LogoutUserAction {
-    type: 'LOGOUT';
+  type: 'LOGOUT';
 }
 export interface userErrorAction {
-    type: 'USER_ERROR';
+  type: 'USER_ERROR';
 }
 export interface loginErrorAction {
-    type: 'LOGIN_FAIL';
-    errorMsg: string | null;
+  type: 'LOGIN_FAIL';
+  errorMsg: string | null;
 }
 export interface registerUserAction {
-    type: typeof USER_REG_SUCCESS;
-    user: UserType;
-    token: string;
+  type: typeof USER_REG_SUCCESS;
+  user: UserType;
+  token: string;
 }
 export interface Loading {
-    type: 'LOADING';
+  type: 'LOADING';
 }
 
 export interface GetUserAction {
-    type: 'GET_USER';
-    user: UserType;
+  type: 'GET_USER';
+  user: UserType;
 }
 export interface getUserInfoAction {
-    type: string;
-    user: UserType;
+  type: string;
+  user: UserType;
 }
 export interface getErrorAction {
-    type: typeof GET_ERRORS;
-    payload: {
-        msg: string;
-        status: string;
-    };
+  type: typeof GET_ERRORS;
+  payload: {
+    msg: string;
+    status: string;
+  };
 }
 export type UserAction =
-    | LoginUserAction
-    | GetUserAction
-    | Loading
-    | registerUserAction
-    | LogoutUserAction
-    | userErrorAction
-    | loginErrorAction
-    | GoogleAuth;
+  | LoginUserAction
+  | GetUserAction
+  | Loading
+  | registerUserAction
+  | LogoutUserAction
+  | userErrorAction
+  | loginErrorAction
+  | GoogleAuth;
 export type ErrorAction = getErrorAction;
