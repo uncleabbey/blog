@@ -1,145 +1,182 @@
 .header {
-    background: #000;
-    color: white;
+  position: fixed;
+  width: 100%;
+  background: #f7f7f7;
+  color: white;
+  padding: 0.5em 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.header h3 > a {
-    text-decoration: none;
-    color: #ffffff;
+.header nav {
+  flex: 3;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
-.hamburger {
-    display: none;
-    font-size: 2em;
-}
-.header,
 .header > nav > ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5em 3em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 }
-.add-post a {
-    background: blue;
-    color: #fff;
-    padding: 0.7em;
-    text-decoration: none;
+.header .flex {
+  display: flex;
+  align-items: center;
+  flex: 5;
+}
+
+.header .logo {
+  width: 150px;
+  height: 50px;
 }
 /* .add-post a:hover */
 .search-input {
-    padding: 0.7em;
-    border: 1px solid grey;
-    width: 400px;
+  padding: 10px;
+  border: 1px solid grey;
+  width: 300px;
+  margin-left: 4em;
+  border-radius: 5px;
+}
+
+.header .hamburger {
+  display: none;
+  font-size: 2em;
+}
+
+.add-post a {
+  background: rgb(3, 14, 3);
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 2em;
 }
 
 .header > nav > ul {
-    list-style: none;
+  list-style: none;
+  justify-content: flex-end;
 }
 .header > nav > ul > li {
-    margin: 0 2em;
-    margin-top: 5px;
+  margin-top: 5px;
 }
 .signup-link {
-    background: gold;
-    padding: 0.5em;
-    color: black;
-    font-weight: bolder;
-    text-decoration: none;
-    margin: 0 2em;
+  background: green;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+.signup-link:hover {
+  background: rgb(3, 14, 3);
+  color: white;
 }
 .login-link {
-    background: blue;
-    padding: 0.5em;
-    color: white;
-    text-decoration: none;
+  padding: 10px 15px;
+  margin-right: 2em;
+  background: rgb(0, 255, 213);
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
 }
+.login-link:hover,
+.add-post a:hover {
+  background: rgb(32, 61, 56);
+  color: white;
+}
+
 .logout {
-    border: 0;
-    outline: 0;
-    background: red;
-    color: white;
-    padding: 0.5em;
-    font-weight: bolder;
-    cursor: pointer;
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+  background: red;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px;
 }
 .initials {
-    padding: 0.6em;
-    border-radius: 50%;
-    background: gold;
-    color: #000;
-    font-weight: bolder;
-    text-transform: uppercase;
+  margin-right: 2em;
+  padding: 0.6em;
+  border-radius: 50%;
+  background: green;
+  color: #fff;
+  font-weight: bolder;
+  text-transform: uppercase;
 }
 
 @media screen and (max-width: 1024px) {
-    .header > nav > ul {
-        padding: 0.5em;
-        margin: 0 1em;
-    }
-    .search-form {
-        display: none;
-    }
-    .logout {
-        padding: 0.4em;
-    }
-    .initials {
-        padding: 0.6em;
-        font-size: 15px;
-        display: block;
-    }
-    .add-post a {
-        display: block;
-        padding: 0;
-    }
+  .header > nav > ul {
+    padding: 0.5em;
+    margin: 0 1em;
+  }
+  .search-form {
+    display: none;
+  }
+  .logout {
+    padding: 0.4em;
+  }
+  .initials {
+    padding: 0.6em;
+    font-size: 15px;
+    display: block;
+  }
+  .add-post a {
+    display: block;
+    padding: 0;
+  }
 }
 @media screen and (max-width: 620px) {
-    .header {
-        padding: 0.4em;
-    }
-    .header h3 > a {
-        font-size: 18px;
-    }
-    .search-form {
-        display: none;
-    }
-    .nav {
-        position: absolute;
-        top: 3em;
-        background: #000;
-        width: 100%;
-    }
-    .nav > ul {
-        flex-direction: column;
-    }
-    #hide {
-        display: none;
-    }
-    #show {
-        display: block;
-    }
-    .hamburger {
-        display: block;
-    }
-    .logout {
-        margin: 0.7em 0;
-        padding: 0.4em;
-    }
-    .initials {
-        margin: 1em 0;
-        padding: 0.6em;
-        font-size: 15px;
-        display: block;
-    }
-    .add-post-link {
-        margin: 1em 0;
-        padding: 0.3em;
-    }
-    .signup-link {
-        padding: 0.15em;
-        display: block;
-        margin: 1em 0;
-    }
-    .login-link {
-        display: block;
-        padding: 0.3em;
-        color: whitesmoke;
-    }
+  .header {
+    padding: 0.4em;
+  }
+  .header h3 > a {
+    font-size: 18px;
+  }
+  .search-form {
+    display: none;
+  }
+  .nav {
+    position: absolute;
+    top: 3em;
+    background: #000;
+    width: 100%;
+  }
+  .nav > ul {
+    flex-direction: column;
+  }
+  #hide {
+    display: none;
+  }
+  #show {
+    display: block;
+  }
+  .hamburger {
+    display: block;
+  }
+  .logout {
+    margin: 0.7em 0;
+    padding: 0.4em;
+  }
+  .initials {
+    margin: 1em 0;
+    padding: 0.6em;
+    font-size: 15px;
+    display: block;
+  }
+  .add-post-link {
+    margin: 1em 0;
+    padding: 0.3em;
+  }
+  .signup-link {
+    padding: 0.15em;
+    display: block;
+    margin: 1em 0;
+  }
+  .login-link {
+    display: block;
+    padding: 0.3em;
+    color: whitesmoke;
+  }
 }

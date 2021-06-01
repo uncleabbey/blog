@@ -13,29 +13,49 @@ import EditPost from './containers/EditPost';
 import PrivateRoute from './components/PrivateRoute';
 import PostDetails from './containers/PostDetails';
 import { CommentForm } from './containers/PostDetails';
+import ThankYou from './containers/ThankYou';
+import Verify from './containers/Verify';
+import ForgotPassword from './containers/ForgotPassword';
+import Page404 from './containers/Page404';
+import ChangePassword from './containers/ChangePassword';
 
 function App(): React.ReactElement {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getUser());
-    }, []);
-    return (
-        <BrowserRouter>
-            <div>
-                <Nav />
-                <Alerts />
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/register" component={Register} />
-                    <Route exact path="/posts/:id" component={PostDetails} />
-                    <Route exact path="/posts/:id/comments" component={CommentForm} />
-                    <PrivateRoute exact path="/create" component={AddPost} next={'create'} />
-                    <PrivateRoute exact path="/edit/:id" component={EditPost} next={'edit'} />
-                </Switch>
-            </div>
-        </BrowserRouter>
-    );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+  return (
+    <BrowserRouter>
+      <div>
+        <Nav />
+        <Alerts />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/thanks" component={ThankYou} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/verify" component={Verify} />
+          <Route exact path="/forgot-password" component={ForgotPassword} />
+          <Route exact path="/change-password" component={ChangePassword} />
+          <Route exact path="/posts/:id" component={PostDetails} />
+          <Route exact path="/posts/:id/comments" component={CommentForm} />
+          <PrivateRoute
+            exact
+            path="/create"
+            component={AddPost}
+            next={'create'}
+          />
+          <PrivateRoute
+            exact
+            path="/edit/:id"
+            component={EditPost}
+            next={'edit'}
+          />
+          <Route component={Page404} />
+        </Switch>
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;

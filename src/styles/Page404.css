@@ -1,0 +1,17 @@
+.page-404-cont {
+  text-align: center;
+  padding: 5em;
+}
+.page-404-cont h1 {
+  font-size: 100px;
+  color: red;
+}
+.page-404-cont button {
+  margin: 2em auto;
+  border: 0;
+  outline: 0;
+  background: green;
+  color: white;
+  border-radius: 15px;
+  padding: 1em 2em;
+}

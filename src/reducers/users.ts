@@ -30,7 +30,6 @@ const userReducer = (state = initialState, action: types.UserAction): reducerSta
             };
         case types.LOGIN_SUCCESSS:
         case types.GOOGLE_SUCCESS:
-        case types.USER_REG_SUCCESS:
             localStorage.setItem('token', action.token);
             return {
                 ...state,

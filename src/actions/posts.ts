@@ -1,14 +1,12 @@
 import * as types from './postTypes';
-// import { RootState } from '../store';
 import { returnErrors } from './error';
 import { Dispatch } from 'redux';
 import axios from 'axios';
 import { config, tokenConfig } from '../utils/config';
-// import { tokenConfig } from '../utils/config';
 import { RootState } from '../store';
+import { backendUrl } from '../utils/constants';
 
-// const baseUrl = 'http://localhost:5000/api/v1/posts';
-const baseUrl = 'https://uncleabbey-blog.herokuapp.com/api/v1/posts';
+const baseUrl = `${backendUrl}/posts`;
 export const getPosts = (limit: number, page: number) => async (dispatch: Dispatch) => {
     dispatch({
         type: types.POST_LOADING,

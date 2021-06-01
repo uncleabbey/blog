@@ -1,0 +1,55 @@
+.thanks-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.thanks {
+  padding: 6em;
+  text-align: center;
+  background: green;
+  color: white;
+  border-radius: 10px 40px 40px 10px;
+}
+.continue {
+  border: 0;
+  outline: 0;
+  background: #fff;
+  padding: 0.5em 2em;
+  color: green;
+  font-weight: 900;
+}
+.continue:hover {
+  background: rgb(11, 34, 11);
+  color: #fff;
+}
+
+.resend-btn {
+  border: 0;
+  outline: 0;
+  background: green;
+  padding: 0.3em 1em;
+  color: white;
+}
+.verify-form {
+  text-align: center;
+  padding: 1em 3em;
+  border: 1px solid #f1f1f1;
+  box-shadow: 2px 5px 5px 2px #000;
+}
+.bolded {
+  font-weight: 600;
+}
+.danger {
+  color: red;
+  text-align: center;
+  font-size: 25px;
+}
+#email-input {
+  border: 1px solid green;
+  width: 400px;
+}
+label {
+  display: block;
+  text-align: left;
+}
